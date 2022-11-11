@@ -3,20 +3,15 @@ package com.example.cinema.Dops;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.context.request.RequestAttributes;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.server.ResponseStatusException;
+import com.example.cinema.ReqResContextSettings.ReqResContext;
 
-import javax.naming.Context;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class StaticMethods {
 
@@ -28,8 +23,9 @@ public class StaticMethods {
      */
     public static void createResponse(int status, String info){
 
-        HttpServletResponse response = getCurrentResponse();
-        HttpServletRequest request = getCurrentRequest();
+        ReqResContext contex = ReqResContext.getCurrentInstance();
+        HttpServletRequest request = contex.getRequest();
+        HttpServletResponse response = contex.getResponse();
 
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(status);
@@ -49,25 +45,25 @@ public class StaticMethods {
 
     }
 
-    private static HttpServletResponse getCurrentResponse(){
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        if(requestAttributes == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-
-        HttpServletResponse response = ((ServletRequestAttributes)requestAttributes).getResponse();
-        if(response == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-
-        return response;
-    }
-
-    private static HttpServletRequest getCurrentRequest(){
-        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
-        if(requestAttributes == null)
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-
-        return ((ServletRequestAttributes)requestAttributes).getRequest();
-    }
+//    private static HttpServletResponse getCurrentResponse(){
+//        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+//        if(requestAttributes == null)
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+//
+//        HttpServletResponse response = ((ServletRequestAttributes)requestAttributes).getResponse();
+//        if(response == null)
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+//
+//        return response;
+//    }
+//
+//    private static HttpServletRequest getCurrentRequest(){
+//        RequestAttributes requestAttributes = RequestContextHolder.getRequestAttributes();
+//        if(requestAttributes == null)
+//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+//
+//        return ((ServletRequestAttributes)requestAttributes).getRequest();
+//    }
 
 
     /**
