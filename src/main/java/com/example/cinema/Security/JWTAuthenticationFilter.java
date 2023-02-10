@@ -71,7 +71,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         String email = ((User) authResult.getPrincipal()).getUsername();
 
         String token = jwTokenService.createJWT(email, role);
-        response.addHeader(HEADER_JWT_STRING, TOKEN_PREFIX+token);
+        response.addHeader(HEADER_JWT_STRING, token);
 
 //        RefreshToken refreshToken = refreshTokenService.createRTbyUserTelephoneNumber(login);
 //        response.addHeader(HEADER_RT_STRING, refreshToken.getToken());

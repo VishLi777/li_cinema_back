@@ -40,6 +40,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter implements WebMvcC
 
                 .antMatchers("/api/user/registration").permitAll()
                 .antMatchers("/api/user/**").hasAuthority("USER")
+                .antMatchers("/api/cinema/addCinema").hasAuthority("ADMIN")
 
 
 
@@ -53,8 +54,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter implements WebMvcC
                 .addFilter(new JWTAuthenticationFilter(authenticationManager(), jwTokenService))
                 .addFilter(new JWTAuthorizationFilter(authenticationManager(), jwTokenService))
                 .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().formLogin().loginProcessingUrl("/api/login");
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
 
     @Override

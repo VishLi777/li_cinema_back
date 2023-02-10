@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service
 public class CinemaService {
@@ -25,14 +26,22 @@ public class CinemaService {
     private Cinema createCinemaFromJson(String body){
         String name = StaticMethods.parsingJson(body, "name");
         String address = StaticMethods.parsingJson(body, "address");
-//        Double rating = Double.valueOf(StaticMethods.parsingJson(body, "rating"));
+        String temp;
+        Double rating = (temp = StaticMethods.parsingJson(body, "rating")) == null ? null : Double.valueOf(temp);
 
         Cinema cinema = new Cinema();
         cinema.setName(name);
         cinema.setAddress(address);
-        cinema.setRating(null);
+        cinema.setRating(rating);
         return cinema;
     }
 
 
+    public Cinema getById(Long id) {
+        return cinemaRepository.getById(id);
+    }
+
+    public List<Cinema> findAll() {
+        return cinemaRepository.findAll();
+    }
 }

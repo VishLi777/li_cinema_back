@@ -1,0 +1,17 @@
+schema {
+ query: Query
+}
+
+type Query {
+    allCinema: [Cinema]
+    cinema(id: Long): Cinema
+}
+
+type Cinema {
+  id: Long!
+  name: String
+  address: String
+  rating: Float
+}
+
+
