@@ -6,10 +6,7 @@ import graphql.ExecutionResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/cinema")
@@ -20,17 +17,26 @@ public class CinemaController {
     @Autowired
     GraphQLService graphQLService;
 
+    // REST_API
     @PostMapping("/addCinema")
     public void addCinema(@RequestBody String body){
         cinemaService.addCinema(body);
     }
 
+
+    //GRAPHQL
     @PostMapping("/getAll")
     public ResponseEntity<Object> getAll(@RequestBody String query){
         ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
         return new ResponseEntity<>(executionResult, HttpStatus.OK);
     }
 
+    // ?
+//    @DeleteMapping("/delete")
+
+
+    // ?
+//    @PutMapping("/edit")
 
 
 }

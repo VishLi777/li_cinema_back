@@ -44,4 +44,8 @@ public class CinemaService {
     public List<Cinema> findAll() {
         return cinemaRepository.findAll();
     }
+
+    public Boolean existsById(Long id){
+        return cinemaRepository.existsById(id);
+    }
 }
