@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service
 public class HallService {
@@ -54,5 +55,13 @@ public class HallService {
         hall.setCinema(cinema);
         hallRepository.save(hall);
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Cinema with this id doesn't exist");
+    }
+
+    public Hall getById(Long id) {
+        return hallRepository.getById(id);
+    }
+
+    public List<Hall> getAll() {
+        return hallRepository.findAll();
     }
 }

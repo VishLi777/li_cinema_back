@@ -1,4 +1,4 @@
-package com.example.cinema.GraphQL;
+package com.example.cinema.GraphQL.cinemaDF;
 
 import com.example.cinema.Entity.Cinema;
 import com.example.cinema.Service.CinemaService;
@@ -7,20 +7,19 @@ import graphql.schema.DataFetchingEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
-public class AllCinemaDataFetcher implements DataFetcher<List<Cinema>> {
+public class CinemaDataFetcher implements DataFetcher<Cinema> {
 
     final CinemaService cinemaService;
 
     @Autowired
-    public AllCinemaDataFetcher(CinemaService cinemaService) {
+    public CinemaDataFetcher(CinemaService cinemaService) {
         this.cinemaService = cinemaService;
     }
 
     @Override
-    public List<Cinema> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        return cinemaService.findAll();
+    public Cinema get(DataFetchingEnvironment dataFetchingEnvironment) {
+        Long id = dataFetchingEnvironment.getArgument("id");
+        return cinemaService.getById(id);
     }
 }

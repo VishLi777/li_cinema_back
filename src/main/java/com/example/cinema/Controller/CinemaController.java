@@ -8,18 +8,24 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+
 @RestController
 @RequestMapping("/api/cinema")
 public class CinemaController {
 
+    final CinemaService cinemaService;
+    final GraphQLService graphQLService;
+
     @Autowired
-    CinemaService cinemaService;
-    @Autowired
-    GraphQLService graphQLService;
+    public CinemaController(CinemaService cinemaService, GraphQLService graphQLService) {
+        this.cinemaService = cinemaService;
+        this.graphQLService = graphQLService;
+    }
 
     // REST_API
     @PostMapping("/addCinema")
-    public void addCinema(@RequestBody String body){
+    public void addCinema(@RequestBody String body) {
         cinemaService.addCinema(body);
     }
 

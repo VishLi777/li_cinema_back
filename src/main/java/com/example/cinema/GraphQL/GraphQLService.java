@@ -1,6 +1,9 @@
 package com.example.cinema.GraphQL;
 
-import com.example.cinema.Service.CinemaService;
+import com.example.cinema.GraphQL.cinemaDF.AllCinemaDataFetcher;
+import com.example.cinema.GraphQL.cinemaDF.CinemaDataFetcher;
+import com.example.cinema.GraphQL.hallDF.AllHallDF;
+import com.example.cinema.GraphQL.hallDF.HallDF;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -18,18 +21,22 @@ public class GraphQLService {
 
     AllCinemaDataFetcher allCinemaDataFetcher;
     CinemaDataFetcher cinemaDataFetcher;
+    HallDF hallDF;
+    AllHallDF allHallDF;
 
-    CinemaService cinemaService;
+//    CinemaService cinemaService;
 
     @Autowired
     public GraphQLService(
             AllCinemaDataFetcher allCinemaDataFetcher,
             CinemaDataFetcher cinemaDataFetcher,
-            CinemaService cinemaService
+            HallDF hallDF,
+            AllHallDF allHallDF
     ) {
         this.allCinemaDataFetcher = allCinemaDataFetcher;
         this.cinemaDataFetcher = cinemaDataFetcher;
-        this.cinemaService = cinemaService;
+        this.hallDF = hallDF;
+        this.allHallDF = allHallDF;
     }
 
     private GraphQL graphQL;
@@ -48,6 +55,8 @@ public class GraphQLService {
                 .type("Query", typeWiring -> typeWiring
                         .dataFetcher("allCinema", allCinemaDataFetcher)
                         .dataFetcher("cinema", cinemaDataFetcher)
+                        .dataFetcher("hall", hallDF)
+                        .dataFetcher("allHall", allHallDF)
                 )
                 .build();
     }

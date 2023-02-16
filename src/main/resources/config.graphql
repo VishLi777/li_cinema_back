@@ -5,13 +5,22 @@ schema {
 type Query {
     allCinema: [Cinema]
     cinema(id: Long): Cinema
+    allHall: [Hall]
+    hall(id: Long): Hall
 }
 
 type Cinema {
-  id: Long!
-  name: String
-  address: String
-  rating: Float
+    id: Long
+    name: String
+    address: String
+    rating: Float
+    halls: [Hall]
+}
+
+type Hall {
+    id: Long
+    number: Int
+    json: String
 }
 
 
