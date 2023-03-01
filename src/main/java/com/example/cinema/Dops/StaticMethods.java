@@ -103,7 +103,7 @@ public class StaticMethods {
      *
      * @code 400 - Incorrect JSON
      */
-    public static String parsingJson (String body, String field) {
+    public static String parsingStringFromJson(String body, String field) {
 
         try {
             JSONObject jsonObject = new JSONObject(body);
@@ -113,6 +113,19 @@ public class StaticMethods {
             return null;
         }
         return field;
+    }
+
+
+    public static Long parsingLongFromJson (String body, String field) {
+        long res;
+        try {
+            JSONObject jsonObject = new JSONObject(body);
+            res = jsonObject.getLong(field);
+        } catch (JSONException e) {
+            StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Incorrect JSON");
+            return null;
+        }
+        return res;
     }
 
 

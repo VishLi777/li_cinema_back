@@ -2,10 +2,8 @@ package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
 import com.example.cinema.Entity.Cinema;
-import com.example.cinema.Entity.UserEntity;
 import com.example.cinema.Repository.CinemaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -24,10 +22,10 @@ public class CinemaService {
     }
 
     private Cinema createCinemaFromJson(String body){
-        String name = StaticMethods.parsingJson(body, "name");
-        String address = StaticMethods.parsingJson(body, "address");
+        String name = StaticMethods.parsingStringFromJson(body, "name");
+        String address = StaticMethods.parsingStringFromJson(body, "address");
         String temp;
-        Double rating = (temp = StaticMethods.parsingJson(body, "rating")) == null ? null : Double.valueOf(temp);
+        Double rating = (temp = StaticMethods.parsingStringFromJson(body, "rating")) == null ? null : Double.valueOf(temp);
 
         Cinema cinema = new Cinema();
         cinema.setName(name);

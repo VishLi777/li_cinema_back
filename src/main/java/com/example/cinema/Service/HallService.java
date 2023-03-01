@@ -22,8 +22,8 @@ public class HallService {
 
 
     public void addHall(String body) {
-        String strCinema_id = StaticMethods.parsingJson(body, "cinema_id");
-        String strNumber = StaticMethods.parsingJson(body, "number");
+        String strCinema_id = StaticMethods.parsingStringFromJson(body, "cinema_id");
+        String strNumber = StaticMethods.parsingStringFromJson(body, "number");
         String json;
 
         try {

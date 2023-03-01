@@ -25,9 +25,9 @@ public class UserEntityService {
     }
 
     private UserEntity createUserFromJson(String body){
-        String email = StaticMethods.parsingJson(body, "email");
-        String password = StaticMethods.parsingJson(body, "password");
-        String name = StaticMethods.parsingJson(body, "name");
+        String email = StaticMethods.parsingStringFromJson(body, "email");
+        String password = StaticMethods.parsingStringFromJson(body, "password");
+        String name = StaticMethods.parsingStringFromJson(body, "name");
 
         UserEntity user = new UserEntity();
         user.setEmail(email);
