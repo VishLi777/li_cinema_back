@@ -9,6 +9,7 @@ import com.example.cinema.ReqResContextSettings.ReqResContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,6 +128,7 @@ public class StaticMethods {
         }
         return res;
     }
+
 
 
     /** метод определения расширения файла */

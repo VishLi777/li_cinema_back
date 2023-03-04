@@ -28,6 +28,17 @@ public class ReviewService {
         String description = StaticMethods.parsingStringFromJson(body, "description");
         Long cinemaId = StaticMethods.parsingLongFromJson(body, "cinema_id");
 
+        if(!cinemaService.existsById(cinemaId)){
+            StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Cinema with this id doesn't exist");
+            return null;
+        }
+
+        if(description == null){
+            StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary field is empty");
+            return null;
+        }
+
+
         Review review = new Review();
         review.setDescription(description);
 

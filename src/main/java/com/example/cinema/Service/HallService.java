@@ -22,8 +22,8 @@ public class HallService {
 
 
     public void addHall(String body) {
-        String strCinema_id = StaticMethods.parsingStringFromJson(body, "cinema_id");
-        String strNumber = StaticMethods.parsingStringFromJson(body, "number");
+        Long cinema_id = StaticMethods.parsingLongFromJson(body, "cinema_id");
+        Long number = StaticMethods.parsingLongFromJson(body, "number");
         String json;
 
         try {
@@ -34,13 +34,13 @@ public class HallService {
             return;
         }
 
-        if(strCinema_id == null || strNumber == null || json == null){
+        if(cinema_id == null || number == null || json == null){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Incorrect JSON");
             return;
         }
 
-        int cinema_id = Integer.parseInt(strCinema_id);
-        int number = Integer.parseInt(strNumber);
+//        int cinema_id = Integer.parseInt(strCinema_id);
+//        int number = Integer.parseInt(strNumber);
 
         if(!cinemaService.existsById((long) cinema_id)){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Cinema with this id doesn't exist");
@@ -50,18 +50,24 @@ public class HallService {
         Cinema cinema = cinemaService.getById((long) cinema_id);
 
         Hall hall = new Hall();
-        hall.setNumber(number);
+        hall.setNumber(Math.toIntExact(number));
         hall.setJson(json);
         hall.setCinema(cinema);
         hallRepository.save(hall);
-        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Cinema with this id doesn't exist");
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Hall created");
     }
 
     public Hall getById(Long id) {
         return hallRepository.getById(id);
     }
 
+
+
     public List<Hall> getAll() {
         return hallRepository.findAll();
+    }
+
+    public boolean existsById(Long hallId) {
+        return hallRepository.existsById(hallId);
     }
 }

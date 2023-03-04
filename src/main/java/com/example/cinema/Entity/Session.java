@@ -29,6 +29,9 @@ public class Session {
     @Column(name = "price")
     private Long price;
 
+    @Column(name = "json")
+    private String json;
+
     @OneToMany(mappedBy = "session")
     private List<Order> orders;
 
