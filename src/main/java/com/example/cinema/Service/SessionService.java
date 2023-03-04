@@ -39,8 +39,8 @@ public class SessionService {
 
     private Session createSessionFromJson(String body){
 
-        Long startTimeOfDisplay = StaticMethods.parsingLongFromJson(body, "start_time_of_display");
-        Long endTimeOfDisplay = StaticMethods.parsingLongFromJson(body, "end_time_of_display");
+        Long start_time_of_display = StaticMethods.parsingLongFromJson(body, "start_time_of_display");
+        Long end_time_of_display = StaticMethods.parsingLongFromJson(body, "end_time_of_display");
         Long price = StaticMethods.parsingLongFromJson(body, "price");
 
         String d = StaticMethods.parsingStringFromJson(body, "date");
@@ -68,36 +68,44 @@ public class SessionService {
             return null;
         }
 
-        Long hallId = StaticMethods.parsingLongFromJson(body, "hall_id");
-        if(!hallService.existsById(hallId)){
+        Long hall_id = StaticMethods.parsingLongFromJson(body, "hall_id");
+        if(!hallService.existsById(hall_id)){
             StaticMethods.createResponse(400, "Hall doesn`t exist with this id");
             return null;
         }
 
-        Long movieId = StaticMethods.parsingLongFromJson(body, "movie_id");
-        if(!movieService.existsById(movieId)){
+        Long movie_id = StaticMethods.parsingLongFromJson(body, "movie_id");
+        if(!movieService.existsById(movie_id)){
             StaticMethods.createResponse(400,"Movie doesn`t exist with this id");
             return null;
         }
 
-        if(startTimeOfDisplay == null || endTimeOfDisplay == null || price == null){
+        if(start_time_of_display == null || end_time_of_display == null || price == null){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary fields are empty");
             return null;
         }
 
         Session session = new Session();
-        session.setStart_time_of_display(startTimeOfDisplay);
-        session.setEnd_time_of_display(endTimeOfDisplay);
+        session.setStart_time_of_display(start_time_of_display);
+        session.setEnd_time_of_display(end_time_of_display);
         session.setDate(date);
         session.setPrice(price);
         session.setJson(json);
 
-        Hall hall = hallService.getById(hallId);
+        Hall hall = hallService.getById(hall_id);
         session.setHall(hall);
-        Movie movie = movieService.getById(movieId);
+        Movie movie = movieService.getById(movie_id);
         session.setMovie(movie);
 
         return session;
+    }
+
+    public boolean existsById(Long session_id) {
+        return sessionRepository.existsById(session_id);
+    }
+
+    public Session getById(Long session_id) {
+        return sessionRepository.getById(session_id);
     }
 }
 

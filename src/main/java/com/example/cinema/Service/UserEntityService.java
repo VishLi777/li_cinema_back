@@ -20,6 +20,8 @@ public class UserEntityService {
 
     public void registration(String body) {
         UserEntity user = createUserFromJson(body);
+        if (user == null)
+            return;
         userRepository.save(user);
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "User created");
     }
@@ -28,6 +30,11 @@ public class UserEntityService {
         String email = StaticMethods.parsingStringFromJson(body, "email");
         String password = StaticMethods.parsingStringFromJson(body, "password");
         String name = StaticMethods.parsingStringFromJson(body, "name");
+
+        if(email == null || password == null || name == null){
+            StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary fields are empty");
+            return null;
+        }
 
         UserEntity user = new UserEntity();
         user.setEmail(email);
@@ -38,4 +45,11 @@ public class UserEntityService {
     }
 
 
+    public boolean existsById(Long user_id) {
+        return userRepository.existsById(user_id);
+    }
+
+    public UserEntity getById(Long user_id) {
+        return userRepository.getById(user_id);
+    }
 }

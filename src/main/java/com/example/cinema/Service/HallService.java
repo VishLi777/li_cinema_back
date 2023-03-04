@@ -67,7 +67,7 @@ public class HallService {
         return hallRepository.findAll();
     }
 
-    public boolean existsById(Long hallId) {
-        return hallRepository.existsById(hallId);
+    public boolean existsById(Long hall_id) {
+        return hallRepository.existsById(hall_id);
     }
 }

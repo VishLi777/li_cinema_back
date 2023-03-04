@@ -129,8 +129,6 @@ public class StaticMethods {
         return res;
     }
 
-
-
     /** метод определения расширения файла */
     public static String getFileExtension(String fileName) {
         // если в имени файла есть точка и она не является первым символом в названии файла

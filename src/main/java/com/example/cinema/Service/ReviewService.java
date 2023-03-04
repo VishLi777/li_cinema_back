@@ -26,9 +26,9 @@ public class ReviewService {
 
     private Review createReviewFromJson(String body){
         String description = StaticMethods.parsingStringFromJson(body, "description");
-        Long cinemaId = StaticMethods.parsingLongFromJson(body, "cinema_id");
+        Long cinema_id = StaticMethods.parsingLongFromJson(body, "cinema_id");
 
-        if(!cinemaService.existsById(cinemaId)){
+        if(!cinemaService.existsById(cinema_id)){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Cinema with this id doesn't exist");
             return null;
         }
@@ -42,7 +42,7 @@ public class ReviewService {
         Review review = new Review();
         review.setDescription(description);
 
-        Cinema cinema = cinemaService.getById(cinemaId);
+        Cinema cinema = cinemaService.getById(cinema_id);
         review.setCinema(cinema);
 
         return review;

@@ -17,19 +17,8 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "place")
-    private String place;
-
     @Column(name = "final_price")
     private String final_price;
-
-    @Column(name = "hall_number")
-    private String hall_number;
-
-    @Column(name = "start_time_of_display")
-    private Long start_time_of_display;
-
-
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
