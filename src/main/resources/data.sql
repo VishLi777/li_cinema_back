@@ -9,5 +9,11 @@ INSERT INTO ci_roles_user_entities(role_id, user_id) VALUES (2, 2);
 
 
 select * from ci_role;
+select * from ci_hall;
+select * from ci_order;
+select * from ci_movie;
 select * from ci_users;
+select * from ci_cinema;
+select * from ci_review;
+select * from ci_session;
 select * from ci_roles_user_entities;

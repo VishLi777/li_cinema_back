@@ -34,8 +34,9 @@ public class OrderService {
 
     private Order createOrderFromJson(String body) {
         String final_price = StaticMethods.parsingStringFromJson(body, "final_price");
+        String json = StaticMethods.parsingStringFromJson(body, "json");
 
-        if(final_price == null){
+        if(final_price == null || json == null){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary fields are empty");
             return null;
         }
@@ -52,11 +53,19 @@ public class OrderService {
             return null;
         }
 
+
+
+        Session session = sessionService.getById(session_id);
+
+        if(!sessionService.updatingPlaces(session, json, user_id))
+            return null;
+
+
+
         Order order = new Order();
         order.setFinal_price(final_price);
         UserEntity user = userService.getById(user_id);
         order.setUser(user);
-        Session session = sessionService.getById(session_id);
         order.setSession(session);
         return order;
     }

@@ -19,6 +19,5 @@ public class OrderController {
     @PostMapping("/addOrder")
     public void addOrder(@RequestBody String body){
         orderService.addOrder(body);
-
     }
 }
