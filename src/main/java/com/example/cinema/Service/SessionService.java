@@ -151,5 +151,18 @@ public class SessionService {
     public void save(Session session){
         sessionRepository.save(session);
     }
+
+    public void deleteSession(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(sessionRepository.existsById(id))
+            sessionRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Session doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Session deleted");
+    }
 }
 

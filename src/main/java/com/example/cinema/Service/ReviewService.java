@@ -60,4 +60,17 @@ public class ReviewService {
 //    public Boolean existsById(Long id){
 //        return cinemaRepository.existsById(id);
 //    }
+
+    public void deleteReview(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(reviewRepository.existsById(id))
+            reviewRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Review doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Review deleted");
+    }
 }

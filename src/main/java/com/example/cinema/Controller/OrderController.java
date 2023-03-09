@@ -1,10 +1,7 @@
 package com.example.cinema.Controller;
 
 import com.example.cinema.Service.OrderService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/order")
@@ -16,8 +13,15 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    // REST_API
     @PostMapping("/addOrder")
     public void addOrder(@RequestBody String body){
         orderService.addOrder(body);
     }
+
+//    // REST_API
+//    @PostMapping("/deleteOrder")
+//    public void deleteOrder(@PathVariable Long id){
+//        orderService.deleteOrder(id);
+//    }
 }

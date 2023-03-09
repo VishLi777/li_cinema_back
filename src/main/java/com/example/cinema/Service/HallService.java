@@ -70,4 +70,17 @@ public class HallService {
     public boolean existsById(Long hall_id) {
         return hallRepository.existsById(hall_id);
     }
+
+    public void deleteHall(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(hallRepository.existsById(id))
+            hallRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Hall doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Hall deleted");
+    }
 }

@@ -60,4 +60,17 @@ public class MovieService {
     public boolean existsById(Long movie_id) {
         return movieRepository.existsById(movie_id);
     }
+
+    public void deleteMovie(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(movieRepository.existsById(id))
+            movieRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Movie doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Movie deleted");
+    }
 }

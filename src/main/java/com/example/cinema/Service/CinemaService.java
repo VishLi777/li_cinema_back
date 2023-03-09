@@ -46,4 +46,18 @@ public class CinemaService {
     public Boolean existsById(Long id){
         return cinemaRepository.existsById(id);
     }
+
+    public void deleteCinema(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(cinemaRepository.existsById(id))
+            cinemaRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Cinema doesn`t exist with this id");
+            return;
+        }
+
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Cinema deleted");
+    }
 }

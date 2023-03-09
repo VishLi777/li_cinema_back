@@ -44,5 +44,10 @@ public class CinemaController {
     // ?
 //    @PutMapping("/edit")
 
+//    @PostMapping("/deleteCinema")
+//    public void deleteCinema(@PathVariable Long id){
+//        cinemaService.deleteCinema(id);
+//    }
+//
 
 }

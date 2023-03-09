@@ -70,4 +70,34 @@ public class OrderService {
         return order;
     }
 
+//    public void deleteOrder(String id) {
+//        Order order = deleteOrderFromJson(id);
+//        if (order == null)
+//            return;
+//        orderRepository.delete(order);
+//        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Order deleted");
+//    }
+//    private Order deleteOrderFromJson(String id) {
+//        Long order_id = StaticMethods.parsingLongFromJson(id, "id");
+//        if (order_id == null) {
+//            StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary fields are empty");
+//            return null;
+//        }
+//
+//        Order order = orderRepository.getById(order_id);
+//        return order;
+//    }
+
+    public void deleteOrder(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(orderRepository.existsById(id))
+            orderRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "Order doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Order deleted");
+    }
 }

@@ -1,10 +1,7 @@
 package com.example.cinema.Controller;
 
 import com.example.cinema.Service.ReviewService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/review")
@@ -20,6 +17,12 @@ public class ReviewController {
     @PostMapping("/addReview")
     public void addReview(@RequestBody String body) {
         reviewService.addReview(body);
+    }
+
+    // REST_API
+    @PostMapping("/deleteReview")
+    public void deleteReview(@PathVariable Long id){
+        reviewService.deleteReview(id);
     }
 
 }

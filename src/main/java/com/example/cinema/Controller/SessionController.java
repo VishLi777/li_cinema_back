@@ -2,10 +2,7 @@ package com.example.cinema.Controller;
 
 
 import com.example.cinema.Service.SessionService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/session")
@@ -23,4 +20,9 @@ public class SessionController {
         sessionService.addSession(body);
     }
 
+//    // REST_API
+//    @PostMapping("/deleteSession")
+//    public void deleteSession(@PathVariable Long id){
+//        sessionService.deleteSession(id);
+//    }
 }
