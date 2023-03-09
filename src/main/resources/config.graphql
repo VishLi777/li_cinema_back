@@ -7,6 +7,9 @@ type Query {
     cinema(id: Long): Cinema
     allHall: [Hall]
     hall(id: Long): Hall
+    allHallsByCinemaId(cinema_id: Long): [Hall]
+    allMovie: [Movie]
+    movie(id: Long): Movie
 }
 
 type Cinema {
@@ -21,6 +24,14 @@ type Hall {
     id: Long
     number: Int
     json: String
+    cinema: Cinema
 }
 
-
+type Movie {
+    id: Long
+    name: String
+    author: String
+    duration: Long
+    start_date_of_rental: Long
+    end_date_of_rental: Long
+}

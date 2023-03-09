@@ -83,4 +83,9 @@ public class HallService {
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Hall deleted");
     }
+
+    public List<Hall> getAllByCinemaId(Long cinema_id) {
+        Cinema cinema = cinemaService.getById(cinema_id);
+        return hallRepository.getAllByCinema(cinema);
+    }
 }
