@@ -20,9 +20,9 @@ public class SessionController {
         sessionService.addSession(body);
     }
 
-//    // REST_API
-//    @PostMapping("/deleteSession")
-//    public void deleteSession(@PathVariable Long id){
-//        sessionService.deleteSession(id);
-//    }
+    // REST_API
+    @PostMapping("/deleteSession")
+    public void deleteSession(@RequestParam("id") Long id){
+        sessionService.deleteSession(id);
+    }
 }

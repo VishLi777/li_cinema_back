@@ -22,7 +22,7 @@ public class Hall {
     @Column(name = "json")
     private String json;
 
-    @OneToMany(mappedBy = "hall")
+    @OneToMany(mappedBy = "hall", cascade = CascadeType.ALL)
     private List<Session> session;
 
     @ManyToOne(fetch = FetchType.EAGER)

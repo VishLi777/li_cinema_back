@@ -28,8 +28,8 @@ public class MovieController {
     }
 
     // REST_API
-    @PostMapping("/deleteMovie/{id}")
-    public void deleteMovie(@PathVariable Long id){
+    @PostMapping("/deleteMovie")
+    public void deleteMovie(@RequestParam("id") Long id){
         movieService.deleteMovie(id);
     }
 

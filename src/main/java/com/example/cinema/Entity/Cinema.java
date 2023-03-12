@@ -25,10 +25,10 @@ public class Cinema {
     @Column(name = "rating")
     private Double rating;
 
-    @OneToMany(mappedBy = "cinema")
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
     private List<Hall> halls;
 
-    @OneToMany(mappedBy = "cinema")
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.ALL)
     private List<Review> reviews;
 
 }

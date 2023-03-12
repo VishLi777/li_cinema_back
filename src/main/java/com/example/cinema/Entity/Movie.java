@@ -31,7 +31,6 @@ public class Movie {
     @Column(name = "end_date_of_rental")
     private Long end_date_of_rental;
 
-
     @OneToMany(mappedBy = "movie")
     private List<Session> sessions;
 

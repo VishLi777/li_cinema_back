@@ -7,6 +7,8 @@ import com.example.cinema.GraphQL.hallDF.AllHallsByCinemaIdDF;
 import com.example.cinema.GraphQL.hallDF.HallDF;
 import com.example.cinema.GraphQL.movieDF.AllMovieDF;
 import com.example.cinema.GraphQL.movieDF.MovieDF;
+import com.example.cinema.GraphQL.reviewDF.AllReviewDF;
+import com.example.cinema.GraphQL.reviewDF.ReviewDF;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -27,9 +29,15 @@ public class GraphQLService {
     CinemaDataFetcher cinemaDataFetcher;
     HallDF hallDF;
     AllHallDF allHallDF;
+    AllHallsByCinemaIdDF allHallsByCinemaIdDF;
     MovieDF movieDF;
     AllMovieDF allMovieDF;
-    AllHallsByCinemaIdDF allHallsByCinemaIdDF;
+    ReviewDF reviewDF;
+    AllReviewDF allReviewDF;
+
+
+
+
 
 //    CinemaService cinemaService;
 
@@ -41,7 +49,9 @@ public class GraphQLService {
             AllHallDF allHallDF,
             MovieDF movieDF,
             AllMovieDF allMovieDF,
-            AllHallsByCinemaIdDF allHallsByCinemaIdDF
+            AllHallsByCinemaIdDF allHallsByCinemaIdDF,
+            ReviewDF reviewDF,
+            AllReviewDF allReviewDF
 
     ) {
         this.allCinemaDataFetcher = allCinemaDataFetcher;
@@ -51,6 +61,8 @@ public class GraphQLService {
         this.movieDF = movieDF;
         this.allMovieDF = allMovieDF;
         this.allHallsByCinemaIdDF = allHallsByCinemaIdDF;
+        this.reviewDF = reviewDF;
+        this.allReviewDF = allReviewDF;
     }
 
     private GraphQL graphQL;
@@ -74,6 +86,8 @@ public class GraphQLService {
                         .dataFetcher("movie", movieDF)
                         .dataFetcher("allMovie", allMovieDF)
                         .dataFetcher("allHallsByCinemaId", allHallsByCinemaIdDF)
+                        .dataFetcher("review", reviewDF)
+                        .dataFetcher("allReview", allReviewDF)
                 )
                 .build();
     }

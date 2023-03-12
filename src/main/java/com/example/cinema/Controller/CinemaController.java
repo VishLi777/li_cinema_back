@@ -30,7 +30,7 @@ public class CinemaController {
     }
 
 
-    //GRAPHQL
+    // GRAPHQL
     @PostMapping("/getAll")
     public ResponseEntity<Object> getAll(@RequestBody String query){
         ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
@@ -44,10 +44,10 @@ public class CinemaController {
     // ?
 //    @PutMapping("/edit")
 
-//    @PostMapping("/deleteCinema")
-//    public void deleteCinema(@PathVariable Long id){
-//        cinemaService.deleteCinema(id);
-//    }
-//
+    @PostMapping("/deleteCinema")
+    public void deleteCinema(@RequestParam("id") Long id){
+        cinemaService.deleteCinema(id);
+    }
+
 
 }

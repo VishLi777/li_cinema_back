@@ -2,12 +2,14 @@ package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
 import com.example.cinema.Entity.Cinema;
+import com.example.cinema.Entity.Movie;
 import com.example.cinema.Entity.Review;
 import com.example.cinema.Repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service
 public class ReviewService {
@@ -73,4 +75,14 @@ public class ReviewService {
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Review deleted");
     }
+
+    public List<Review> getAll() {
+        return reviewRepository.findAll();
+    }
+
+    public Review getById(Long id) {
+        return reviewRepository.getById(id);
+    }
+
+
 }

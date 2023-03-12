@@ -32,7 +32,7 @@ public class Session {
     @Column(name = "json")
     private String json;
 
-    @OneToMany(mappedBy = "session")
+    @OneToMany(mappedBy = "session", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     @ManyToOne(fetch = FetchType.EAGER)

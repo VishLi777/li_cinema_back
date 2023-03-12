@@ -35,10 +35,10 @@ public class HallController {
         return new ResponseEntity<>(executionResult, HttpStatus.OK);
     }
 
-//    // REST_API
-//    @PostMapping("/deleteHall")
-//    public void deleteHall(@PathVariable Long id){
-//        hallService.deleteHall(id);
-//    }
+    // REST_API
+    @PostMapping("/deleteHall")
+    public void deleteHall(@RequestParam("id") Long id){
+        hallService.deleteHall(id);
+    }
 
 }

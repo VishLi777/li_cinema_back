@@ -67,9 +67,16 @@ public class MovieService {
             return;
         }
         if(movieRepository.existsById(id))
-            movieRepository.deleteById(id);
+            try {
+                movieRepository.deleteById(id);
+            }catch (Exception ignored){
+                StaticMethods.createResponse(
+                        400,
+                        "Movie can't be deleted, cause some sessions use this movie"
+                );
+            }
         else {
-            StaticMethods.createResponse(400, "Movie doesn`t exist with this id");
+            StaticMethods.createResponse(400, "Movie doesn't exist with this id");
             return;
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Movie deleted");

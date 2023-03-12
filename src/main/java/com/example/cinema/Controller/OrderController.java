@@ -19,9 +19,9 @@ public class OrderController {
         orderService.addOrder(body);
     }
 
-//    // REST_API
-//    @PostMapping("/deleteOrder")
-//    public void deleteOrder(@PathVariable Long id){
-//        orderService.deleteOrder(id);
-//    }
+    // REST_API
+    @PostMapping("/deleteOrder")
+    public void deleteOrder(@RequestParam("id") Long id){
+        orderService.deleteOrder(id);
+    }
 }

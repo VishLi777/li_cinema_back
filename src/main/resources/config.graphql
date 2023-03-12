@@ -10,6 +10,8 @@ type Query {
     allHallsByCinemaId(cinema_id: Long): [Hall]
     allMovie: [Movie]
     movie(id: Long): Movie
+    allReview: [Review]
+    review(id: Long): Review
 }
 
 type Cinema {
@@ -34,4 +36,9 @@ type Movie {
     duration: Long
     start_date_of_rental: Long
     end_date_of_rental: Long
+}
+
+type Review {
+    id: Long
+    description: String
 }
