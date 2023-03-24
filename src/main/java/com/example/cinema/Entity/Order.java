@@ -20,6 +20,10 @@ public class Order {
     @Column(name = "final_price")
     private String final_price;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private EStatuses status;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private UserEntity user;

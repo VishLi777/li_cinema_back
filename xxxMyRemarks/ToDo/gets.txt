@@ -1,0 +1,45 @@
+GraphQL
+refactor - MovieDF, HallDF, CinemaDataFetcher, ReviewDF etc to ___ByIdDF
+
+Session
+// all sessions by HallId (AllSessionsByHallIdDF )
+// all sessions by MovieId (AllSessionsByMovieIdDF )
+// session by OrderId and OrderStatus (SessionByOrderIdAndOrderStatusDF )
+// session by id (SessionByIdDF )
+
+Review
+// all reviews (AllReviewDF +)
+// review by id (ReviewByIdDF )
+// all review by CinemaId (AllReviewsByCinemaIdDF )
+
+Order
+// all orders by OrderStatus (AllOrdersByOrderStatusDF )
+// order by id (OrderByIdDF )
+// all order by UserId and OrderStatus (AllOrdersByUserIdAndOrderStatusDF )
+
+Hall
+// all halls (AllHallDF +)
+// hall by id (HallByIdDF )
+// all halls by CinemaId (AllHallsByCinemaIdDF + )
+
+Movie
+// all movies (AllMovieDF + )
+// movie by id (MovieByIdDF )
+
+Cinema
+// all cinemas (AllCinemaDF )
+// cinema by id (CinemaByIdDF )
+
+User
+// all users (AllUserDF )
+// user by id (UserByIdDF)
+
+
+Cinema, Hall, Review, Movie, Order - ok delete
+— Session
+1. При попытке удаления нужно сверить end_time_of_display с текущей датой и временем. (Не удалять пока не закончится дата дисплея)
+2. Нужно при удалении сессии отвязывать id_session в заказе (выставлять null)
+3. Добавить scheduled, ищущий заказы с нулевой сессией и отправляющий пользователям оповещение об отмене заказа
+— User
+1. Обычное удаление (можно из order)
+2. Прописать каскад (удаление пользователя влечёт удаление истории заказов)

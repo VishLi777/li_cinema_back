@@ -42,3 +42,23 @@ type Review {
     id: Long
     description: String
 }
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "start_time_of_display")
+    private Long start_time_of_display;
+
+    @Column(name = "end_time_of_display")
+    private Long end_time_of_display;
+
+    @Column(name = "data")
+    private Date date;
+
+    @Column(name = "price")
+    private Long price;
+
+    @Column(name = "json")
+    private String json;
