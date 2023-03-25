@@ -58,4 +58,17 @@ public class UserEntityService {
     public UserEntity findByOrder(Long orderId) {
         return userRepository.findByOrderId(orderId);
     }
+
+    public void deleteUser(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(userRepository.existsById(id))
+            userRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "User doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_NO_CONTENT, "User deleted");
+    }
 }
