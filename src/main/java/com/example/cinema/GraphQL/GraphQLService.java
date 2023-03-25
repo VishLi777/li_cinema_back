@@ -35,12 +35,6 @@ public class GraphQLService {
     ReviewDF reviewDF;
     AllReviewDF allReviewDF;
 
-
-
-
-
-//    CinemaService cinemaService;
-
     @Autowired
     public GraphQLService(
             AllCinemaDataFetcher allCinemaDataFetcher,

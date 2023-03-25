@@ -8,7 +8,7 @@ Session
 // session by id (SessionByIdDF )
 
 Review
-// all reviews (AllReviewDF +)
+// all reviews (AllReviewDF + )
 // review by id (ReviewByIdDF )
 // all review by CinemaId (AllReviewsByCinemaIdDF )
 
@@ -18,7 +18,7 @@ Order
 // all order by UserId and OrderStatus (AllOrdersByUserIdAndOrderStatusDF )
 
 Hall
-// all halls (AllHallDF +)
+// all halls (AllHallDF + )
 // hall by id (HallByIdDF )
 // all halls by CinemaId (AllHallsByCinemaIdDF + )
 
@@ -37,9 +37,8 @@ User
 
 Cinema, Hall, Review, Movie, Order - ok delete
 — Session
-1. При попытке удаления нужно сверить end_time_of_display с текущей датой и временем. (Не удалять пока не закончится дата дисплея)
-2. Нужно при удалении сессии отвязывать id_session в заказе (выставлять null)
-3. Добавить scheduled, ищущий заказы с нулевой сессией и отправляющий пользователям оповещение об отмене заказа
+1. Нужно при удалении сессии отвязывать id_session в заказе (выставлять null)
+2. Добавить scheduled, ищущий заказы с нулевой сессией и статусом open и отправляющий пользователям оповещение об отмене заказа
 — User
 1. Обычное удаление (можно из order)
 2. Прописать каскад (удаление пользователя влечёт удаление истории заказов)

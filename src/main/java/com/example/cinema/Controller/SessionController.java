@@ -21,7 +21,7 @@ public class SessionController {
     }
 
     // REST_API
-    @PostMapping("/deleteSession")
+    @DeleteMapping("/deleteSession")
     public void deleteSession(@RequestParam("id") Long id){
         sessionService.deleteSession(id);
     }
