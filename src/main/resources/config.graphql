@@ -12,6 +12,9 @@ type Query {
     movie(id: Long): Movie
     allReview: [Review]
     review(id: Long): Review
+    session(id: Long): Session
+    allSessionsByHallId(hall_id: Long): [Session]
+    allSessionsByMovieId(movie_id: Long): [Session]
 }
 
 type Cinema {
@@ -41,4 +44,15 @@ type Movie {
 type Review {
     id: Long
     description: String
+}
+
+type Session {
+    id: Long
+    start_time_of_display: Long
+    end_time_of_display: Long
+    date: String
+    price: Long
+    json: String
+    movie: Movie
+    hall: Hall
 }

@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class HallDF implements DataFetcher<Hall> {
+public class HallByIdDF implements DataFetcher<Hall> {
 
     final HallService hallService;
 
     @Autowired
-    public HallDF(HallService hallService) {
+    public HallByIdDF(HallService hallService) {
         this.hallService = hallService;
     }
 

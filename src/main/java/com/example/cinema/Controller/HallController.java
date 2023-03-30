@@ -28,13 +28,6 @@ public class HallController {
         hallService.addHall(body);
     }
 
-    //GRAPHQL
-    @PostMapping("/getAll")
-    public ResponseEntity<Object> getAll(@RequestBody String query){
-        ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
-        return new ResponseEntity<>(executionResult, HttpStatus.OK);
-    }
-
     // REST_API
     @DeleteMapping("/deleteHall")
     public void deleteHall(@RequestParam("id") Long id){

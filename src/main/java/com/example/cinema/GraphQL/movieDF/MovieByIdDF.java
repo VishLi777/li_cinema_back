@@ -4,15 +4,14 @@ import com.example.cinema.Entity.Movie;
 import com.example.cinema.Service.MovieService;
 import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MovieDF implements DataFetcher<Movie> {
+public class MovieByIdDF implements DataFetcher<Movie> {
 
     final MovieService movieService;
 
-    public MovieDF(MovieService movieService) {
+    public MovieByIdDF(MovieService movieService) {
         this.movieService = movieService;
     }
 

@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CinemaDataFetcher implements DataFetcher<Cinema> {
+public class CinemaByIdDF implements DataFetcher<Cinema> {
 
     final CinemaService cinemaService;
 
     @Autowired
-    public CinemaDataFetcher(CinemaService cinemaService) {
+    public CinemaByIdDF(CinemaService cinemaService) {
         this.cinemaService = cinemaService;
     }
 

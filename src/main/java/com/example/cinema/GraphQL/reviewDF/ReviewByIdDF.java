@@ -1,7 +1,6 @@
 package com.example.cinema.GraphQL.reviewDF;
 
 
-import com.example.cinema.Entity.Movie;
 import com.example.cinema.Entity.Review;
 
 import com.example.cinema.Service.ReviewService;
@@ -11,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ReviewDF implements DataFetcher<Review>  {
+public class ReviewByIdDF implements DataFetcher<Review>  {
     @Autowired
     final ReviewService reviewService;
 
 
-    public ReviewDF(ReviewService reviewService) {
+    public ReviewByIdDF(ReviewService reviewService) {
         this.reviewService = reviewService;
     }
 

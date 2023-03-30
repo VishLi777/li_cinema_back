@@ -31,10 +31,4 @@ public class ReviewController {
         reviewService.deleteReview(id);
     }
 
-    // GRAPHQL
-    @PostMapping("/getAll")
-    public ResponseEntity<Object> getAll(@RequestBody String query){
-        ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
-        return new ResponseEntity<>(executionResult, HttpStatus.OK);
-    }
 }

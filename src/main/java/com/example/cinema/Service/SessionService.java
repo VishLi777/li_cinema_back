@@ -1,6 +1,7 @@
 package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
+import com.example.cinema.Entity.Cinema;
 import com.example.cinema.Entity.Hall;
 import com.example.cinema.Entity.Movie;
 import com.example.cinema.Entity.Order;
@@ -105,6 +106,20 @@ public class SessionService {
         return sessionRepository.getById(session_id);
     }
 
+    public List<Session> getAll() {
+        return sessionRepository.findAll();
+    }
+
+    public List<Session> getAllByHallId(Long hall_id) {
+        Hall hall = hallService.getById(hall_id);
+        return sessionRepository.getAllByHall(hall);
+    }
+
+    public List<Session> getAllByMovieId(Long movie_id) {
+        Movie movie = movieService.getById(movie_id);
+        return sessionRepository.getAllByMovie(movie);
+    }
+
     public boolean updatingPlaces(Session session, String json, Long user_id) {
 
         try {
@@ -176,5 +191,8 @@ public class SessionService {
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Session deleted");
     }
+
+
+
 }
 
