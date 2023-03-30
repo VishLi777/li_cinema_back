@@ -26,7 +26,7 @@ public class ReviewController {
     }
 
     // REST_API
-    @PostMapping("/deleteReview")
+    @DeleteMapping("/deleteReview")
     public void deleteReview(@RequestParam("id") Long id){
         reviewService.deleteReview(id);
     }

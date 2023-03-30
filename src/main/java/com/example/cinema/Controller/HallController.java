@@ -29,7 +29,7 @@ public class HallController {
     }
 
     // REST_API
-    @PostMapping("/deleteHall")
+    @DeleteMapping("/deleteHall")
     public void deleteHall(@RequestParam("id") Long id){
         hallService.deleteHall(id);
     }

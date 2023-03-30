@@ -28,7 +28,7 @@ public class MovieController {
     }
 
     // REST_API
-    @PostMapping("/deleteMovie")
+    @DeleteMapping("/deleteMovie")
     public void deleteMovie(@RequestParam("id") Long id){
         movieService.deleteMovie(id);
     }

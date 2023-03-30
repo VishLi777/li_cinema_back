@@ -1,6 +1,7 @@
 package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
+import com.example.cinema.Entity.Order;
 import com.example.cinema.Entity.UserEntity;
 import com.example.cinema.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service
 public class UserEntityService {
@@ -51,5 +53,22 @@ public class UserEntityService {
 
     public UserEntity getById(Long user_id) {
         return userRepository.getById(user_id);
+    }
+
+    public UserEntity findByOrder(Long orderId) {
+        return userRepository.findByOrderId(orderId);
+    }
+
+    public void deleteUser(Long id) {
+        if (id == null) {
+            return;
+        }
+        if(userRepository.existsById(id))
+            userRepository.deleteById(id);
+        else {
+            StaticMethods.createResponse(400, "User doesn`t exist with this id");
+            return;
+        }
+        StaticMethods.createResponse(HttpServletResponse.SC_NO_CONTENT, "User deleted");
     }
 }

@@ -4,12 +4,14 @@ import com.example.cinema.Dops.StaticMethods;
 import com.example.cinema.Entity.Cinema;
 import com.example.cinema.Entity.Hall;
 import com.example.cinema.Entity.Movie;
+import com.example.cinema.Entity.Order;
 import com.example.cinema.Entity.Session;
 import com.example.cinema.Repository.SessionRepository;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,9 @@ public class SessionService {
 
     @Autowired
     MovieService movieService;
+
+    @Autowired
+    OrderService orderService;
 
     public void addSession(String body) {
         Session session = createSessionFromJson(body);
@@ -172,8 +177,14 @@ public class SessionService {
         if (id == null) {
             return;
         }
-        if(sessionRepository.existsById(id))
+        if(sessionRepository.existsById(id)) {
+            Session session = sessionRepository.findById(id).orElse(null);
+            List<Order> orders = orderService.findAllBySession(session);
+            orders.forEach(order -> order.setSession(null));
+            orderService.saveAll(orders);
             sessionRepository.deleteById(id);
+        }
+
         else {
             StaticMethods.createResponse(400, "Session doesn`t exist with this id");
             return;

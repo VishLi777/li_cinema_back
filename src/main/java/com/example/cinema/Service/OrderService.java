@@ -2,6 +2,7 @@ package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
 
+import com.example.cinema.Entity.EStatuses;
 import com.example.cinema.Entity.Order;
 import com.example.cinema.Entity.Session;
 import com.example.cinema.Entity.UserEntity;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.Column;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Service
 public class OrderService {
@@ -99,5 +101,17 @@ public class OrderService {
             return;
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Order deleted");
+    }
+
+    public List<Order> findAllBySession(Session session){
+        return orderRepository.findAllBySession(session);
+    }
+
+    public void saveAll(List<Order> orders) {
+        orderRepository.saveAll(orders);
+    }
+
+    public List<Order> findAllByStatus(EStatuses status){
+        return orderRepository.findAllByStatus(status);
     }
 }

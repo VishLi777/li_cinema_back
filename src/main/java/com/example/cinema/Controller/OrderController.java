@@ -20,7 +20,7 @@ public class OrderController {
     }
 
     // REST_API
-    @PostMapping("/deleteOrder")
+    @DeleteMapping("/deleteOrder")
     public void deleteOrder(@RequestParam("id") Long id){
         orderService.deleteOrder(id);
     }
