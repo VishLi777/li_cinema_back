@@ -10,12 +10,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class AllCinemaDataFetcher implements DataFetcher<List<Cinema>> {
+public class AllCinemaDF implements DataFetcher<List<Cinema>> {
 
     final CinemaService cinemaService;
 
     @Autowired
-    public AllCinemaDataFetcher(CinemaService cinemaService) {
+    public AllCinemaDF(CinemaService cinemaService) {
         this.cinemaService = cinemaService;
     }
 

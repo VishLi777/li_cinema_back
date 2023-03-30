@@ -29,21 +29,7 @@ public class CinemaController {
         cinemaService.addCinema(body);
     }
 
-
-    // GRAPHQL
-    @PostMapping("/getAll")
-    public ResponseEntity<Object> getAll(@RequestBody String query){
-        ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
-        return new ResponseEntity<>(executionResult, HttpStatus.OK);
-    }
-
-    // ?
-//    @DeleteMapping("/delete")
-
-
-    // ?
-//    @PutMapping("/edit")
-
+    // REST_API
     @PostMapping("/deleteCinema")
     public void deleteCinema(@RequestParam("id") Long id){
         cinemaService.deleteCinema(id);

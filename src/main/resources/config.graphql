@@ -12,6 +12,9 @@ type Query {
     movie(id: Long): Movie
     allReview: [Review]
     review(id: Long): Review
+    session(id: Long): Session
+    allSessionsByHallId(hall_id: Long): [Session]
+    allSessionsByMovieId(movie_id: Long): [Session]
 }
 
 type Cinema {
@@ -43,22 +46,13 @@ type Review {
     description: String
 }
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(name = "start_time_of_display")
-    private Long start_time_of_display;
-
-    @Column(name = "end_time_of_display")
-    private Long end_time_of_display;
-
-    @Column(name = "data")
-    private Date date;
-
-    @Column(name = "price")
-    private Long price;
-
-    @Column(name = "json")
-    private String json;
+type Session {
+    id: Long
+    start_time_of_display: Long
+    end_time_of_display: Long
+    date: String
+    price: Long
+    json: String
+    movie: Movie
+    hall: Hall
+}

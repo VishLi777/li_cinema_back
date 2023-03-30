@@ -1,21 +1,23 @@
 package com.example.cinema.GraphQL;
 
-import com.example.cinema.GraphQL.cinemaDF.AllCinemaDataFetcher;
-import com.example.cinema.GraphQL.cinemaDF.CinemaDataFetcher;
+import com.example.cinema.GraphQL.cinemaDF.AllCinemaDF;
+import com.example.cinema.GraphQL.cinemaDF.CinemaByIdDF;
 import com.example.cinema.GraphQL.hallDF.AllHallDF;
 import com.example.cinema.GraphQL.hallDF.AllHallsByCinemaIdDF;
-import com.example.cinema.GraphQL.hallDF.HallDF;
+import com.example.cinema.GraphQL.hallDF.HallByIdDF;
 import com.example.cinema.GraphQL.movieDF.AllMovieDF;
-import com.example.cinema.GraphQL.movieDF.MovieDF;
+import com.example.cinema.GraphQL.movieDF.MovieByIdDF;
 import com.example.cinema.GraphQL.reviewDF.AllReviewDF;
-import com.example.cinema.GraphQL.reviewDF.ReviewDF;
+import com.example.cinema.GraphQL.reviewDF.ReviewByIdDF;
+import com.example.cinema.GraphQL.sessionDF.AllSessionsByHallIdDF;
+import com.example.cinema.GraphQL.sessionDF.AllSessionsByMovieIdDF;
+import com.example.cinema.GraphQL.sessionDF.SessionByIdDF;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import kotlin.reflect.jvm.internal.impl.descriptors.deserialization.PlatformDependentDeclarationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,44 +27,47 @@ import java.io.File;
 @Component
 public class GraphQLService {
 
-    AllCinemaDataFetcher allCinemaDataFetcher;
-    CinemaDataFetcher cinemaDataFetcher;
-    HallDF hallDF;
+    AllCinemaDF allCinemaDF;
+    CinemaByIdDF cinemaByIdDF;
+    HallByIdDF hallByIdDF;
     AllHallDF allHallDF;
     AllHallsByCinemaIdDF allHallsByCinemaIdDF;
-    MovieDF movieDF;
+    MovieByIdDF movieByIdDF;
     AllMovieDF allMovieDF;
-    ReviewDF reviewDF;
+    ReviewByIdDF reviewByIdDF;
     AllReviewDF allReviewDF;
-
-
-
-
-
-//    CinemaService cinemaService;
+    SessionByIdDF sessionByIdDF;
+    AllSessionsByHallIdDF allSessionsByHallIdDF;
+    AllSessionsByMovieIdDF allSessionsByMovieIdDF;
 
     @Autowired
     public GraphQLService(
-            AllCinemaDataFetcher allCinemaDataFetcher,
-            CinemaDataFetcher cinemaDataFetcher,
-            HallDF hallDF,
+            AllCinemaDF allCinemaDF,
+            CinemaByIdDF cinemaByIdDF,
+            HallByIdDF hallByIdDF,
             AllHallDF allHallDF,
-            MovieDF movieDF,
+            MovieByIdDF movieByIdDF,
             AllMovieDF allMovieDF,
             AllHallsByCinemaIdDF allHallsByCinemaIdDF,
-            ReviewDF reviewDF,
-            AllReviewDF allReviewDF
+            ReviewByIdDF reviewByIdDF,
+            AllReviewDF allReviewDF,
+            SessionByIdDF sessionByIdDF,
+            AllSessionsByHallIdDF allSessionsByHallIdDF,
+            AllSessionsByMovieIdDF allSessionsByMovieIdDF
 
     ) {
-        this.allCinemaDataFetcher = allCinemaDataFetcher;
-        this.cinemaDataFetcher = cinemaDataFetcher;
-        this.hallDF = hallDF;
+        this.allCinemaDF = allCinemaDF;
+        this.cinemaByIdDF = cinemaByIdDF;
+        this.hallByIdDF = hallByIdDF;
         this.allHallDF = allHallDF;
-        this.movieDF = movieDF;
+        this.movieByIdDF = movieByIdDF;
         this.allMovieDF = allMovieDF;
         this.allHallsByCinemaIdDF = allHallsByCinemaIdDF;
-        this.reviewDF = reviewDF;
+        this.reviewByIdDF = reviewByIdDF;
         this.allReviewDF = allReviewDF;
+        this.sessionByIdDF = sessionByIdDF;
+        this.allSessionsByHallIdDF = allSessionsByHallIdDF;
+        this.allSessionsByMovieIdDF = allSessionsByMovieIdDF;
     }
 
     private GraphQL graphQL;
@@ -79,15 +84,18 @@ public class GraphQLService {
     private RuntimeWiring buildRuntimeWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type("Query", typeWiring -> typeWiring
-                        .dataFetcher("allCinema", allCinemaDataFetcher)
-                        .dataFetcher("cinema", cinemaDataFetcher)
-                        .dataFetcher("hall", hallDF)
+                        .dataFetcher("allCinema", allCinemaDF)
+                        .dataFetcher("cinema", cinemaByIdDF)
+                        .dataFetcher("hall", hallByIdDF)
                         .dataFetcher("allHall", allHallDF)
-                        .dataFetcher("movie", movieDF)
+                        .dataFetcher("movie", movieByIdDF)
                         .dataFetcher("allMovie", allMovieDF)
                         .dataFetcher("allHallsByCinemaId", allHallsByCinemaIdDF)
-                        .dataFetcher("review", reviewDF)
+                        .dataFetcher("review", reviewByIdDF)
                         .dataFetcher("allReview", allReviewDF)
+                        .dataFetcher("session", sessionByIdDF)
+                        .dataFetcher("allSessionsByHallId", allSessionsByHallIdDF)
+                        .dataFetcher("allSessionsByMovieId", allSessionsByMovieIdDF)
                 )
                 .build();
     }
