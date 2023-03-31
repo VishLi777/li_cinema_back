@@ -60,4 +60,8 @@ public class CinemaService {
 
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Cinema deleted");
     }
+
+    public Cinema save(Cinema cinema){
+        return cinemaRepository.save(cinema);
+    }
 }
