@@ -97,6 +97,8 @@ public class GraphQLService {
                         .dataFetcher("allSessionsByHallId", allSessionsByHallIdDF)
                         .dataFetcher("allSessionsByMovieId", allSessionsByMovieIdDF)
                 )
+                .type("Mutation", typeWiring -> typeWiring
+                        .dataFetcher("editCinema", cinemaByIdDF.editCinema()))
                 .build();
     }
 

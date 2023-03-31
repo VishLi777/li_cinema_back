@@ -1,5 +1,6 @@
 schema {
- query: Query
+    query: Query
+    mutation: Mutation
 }
 
 type Query {
@@ -15,6 +16,10 @@ type Query {
     session(id: Long): Session
     allSessionsByHallId(hall_id: Long): [Session]
     allSessionsByMovieId(movie_id: Long): [Session]
+}
+
+type Mutation {
+    editCinema(id: Float!, name: String, address: String, rating: Float): Cinema
 }
 
 type Cinema {
