@@ -21,7 +21,7 @@ public class GraphQLController {
     }
 
     // GRAPHQL
-    @PostMapping("/getInfo")
+    @PostMapping("/dataHandling")
     public ResponseEntity<Object> getInfo(@RequestBody String query){
         ExecutionResult executionResult = graphQLService.getGraphQL().execute(query);
         return new ResponseEntity<>(executionResult, HttpStatus.OK);

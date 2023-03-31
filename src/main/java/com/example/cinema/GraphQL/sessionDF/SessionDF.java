@@ -11,20 +11,25 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class AllSessionsByHallIdDF implements DataFetcher<List<Session>> {
+public class SessionDF {
 
     final SessionService sessionService;
 
     @Autowired
-    public AllSessionsByHallIdDF(SessionService sessionService) {
+    public SessionDF(SessionService sessionService) {
         this.sessionService = sessionService;
     }
 
-
-    @Override
-    public List<Session> get(DataFetchingEnvironment dataFetchingEnvironment) {
-        Long hall_id = dataFetchingEnvironment.getArgument("hall_id");
-        return sessionService.getAllByHallId(hall_id);
-
+    public DataFetcher<Session> getById(){
+        return env -> sessionService.getById(env.getArgument("id"));
     }
+
+    public DataFetcher<List<Session>> getAllByMovieId(){
+        return env -> sessionService.getAllByMovieId(env.getArgument("movie_id"));
+    }
+
+    public DataFetcher<List<Session>> getAllByHallId(){
+        return env -> sessionService.getAllByHallId(env.getArgument("hall_id"));
+    }
+
 }
