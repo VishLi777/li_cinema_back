@@ -19,7 +19,7 @@ type Query {
 }
 
 type Mutation {
-    editCinema(id: Float!, name: String, address: String, rating: Float): Cinema
+    editCinema(id: Long!, name: String, address: String, rating: Long): Cinema
 }
 
 type Cinema {
