@@ -2,10 +2,7 @@ package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
 
-import com.example.cinema.Entity.EStatuses;
-import com.example.cinema.Entity.Order;
-import com.example.cinema.Entity.Session;
-import com.example.cinema.Entity.UserEntity;
+import com.example.cinema.Entity.*;
 import com.example.cinema.Repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,12 +34,14 @@ public class OrderService {
     private Order createOrderFromJson(String body) {
         String final_price = StaticMethods.parsingStringFromJson(body, "final_price");
         String json = StaticMethods.parsingStringFromJson(body, "json");
+        String status_temp = StaticMethods.parsingStringFromJson(body, "status");
 
-        if(final_price == null || json == null){
+        if(final_price == null || json == null || status_temp == null){
             StaticMethods.createResponse(HttpServletResponse.SC_BAD_REQUEST, "Necessary fields are empty");
             return null;
         }
 
+        EStatuses status = EStatuses.valueOf(status_temp);
         Long user_id = StaticMethods.parsingLongFromJson(body, "user_id");
         if(!userService.existsById(user_id)){
             StaticMethods.createResponse(400, "User doesn`t exist with this id");
@@ -63,9 +62,9 @@ public class OrderService {
             return null;
 
 
-
         Order order = new Order();
         order.setFinal_price(final_price);
+        order.setStatus(status);
         UserEntity user = userService.getById(user_id);
         order.setUser(user);
         order.setSession(session);
@@ -114,4 +113,16 @@ public class OrderService {
     public List<Order> findAllByStatus(EStatuses status){
         return orderRepository.findAllByStatus(status);
     }
+
+    public Order getById(Long id) {
+        return orderRepository.getById(id);
+    }
+
+
+    public List<Order> getAllByUserIdAndOrderStatus(Long user_id, EStatuses status) {
+        UserEntity user = userService.getById(user_id);
+        return orderRepository.getAllByUserAndStatus(user, status);
+
+    }
+
 }

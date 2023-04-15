@@ -16,6 +16,10 @@ type Query {
     session(id: Long): Session
     allSessionsByHallId(hall_id: Long): [Session]
     allSessionsByMovieId(movie_id: Long): [Session]
+    order(id: Long): Order
+    allOrdersByOrderStatus(status: String): [Order]
+    allOrdersByUserIdAndOrderStatus(user_id: Long, status: String): [Order]
+
 }
 
 type Mutation {
@@ -61,3 +65,11 @@ type Session {
     movie: Movie
     hall: Hall
 }
+
+type Order {
+    id: Long
+    final_price: String
+    status: String
+    session: Session
+}
+
