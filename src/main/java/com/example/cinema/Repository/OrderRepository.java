@@ -3,6 +3,7 @@ package com.example.cinema.Repository;
 import com.example.cinema.Entity.EStatuses;
 import com.example.cinema.Entity.Order;
 import com.example.cinema.Entity.Session;
+import com.example.cinema.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,7 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order,Long> {
     List<Order> findAllBySession(Session session);
     List<Order> findAllByStatus(EStatuses status);
+
+    List<Order> getAllByUserAndStatus(UserEntity user_id, EStatuses status);
 
 }
