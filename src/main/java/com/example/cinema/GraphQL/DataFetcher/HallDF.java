@@ -1,5 +1,6 @@
 package com.example.cinema.GraphQL.DataFetcher;
 
+import com.example.cinema.Entity.Cinema;
 import com.example.cinema.Entity.Hall;
 import com.example.cinema.Service.HallService;
 import graphql.schema.DataFetcher;
@@ -30,6 +31,22 @@ public class HallDF {
 
     public DataFetcher<List<Hall>> getAll(){
         return env -> hallService.getAll();
+    }
+
+
+    public DataFetcher<Hall> editHall(){
+        return env -> {
+            Long id = env.getArgument("id");
+            Hall hall = hallService.getById(id);
+            if (env.containsArgument("json"))
+                hall.setJson(env.getArgument("json"));
+            if(env.containsArgument("number"))
+                hall.setNumber(env.getArgument("number"));
+            return hallService.save(hall);
+
+
+
+        };
     }
 
 }

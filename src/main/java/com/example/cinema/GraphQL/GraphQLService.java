@@ -72,7 +72,10 @@ public class GraphQLService {
                         .dataFetcher("allOrdersByUserIdAndOrderStatus", orderDF.getAllByUserIdAndOrderStatus())
                 )
                 .type("Mutation", typeWiring -> typeWiring
-                        .dataFetcher("editCinema", cinemaDF.editCinema()))
+                        .dataFetcher("editCinema", cinemaDF.editCinema())
+                        .dataFetcher("editHall", hallDF.editHall())
+                )
+
                 .build();
     }
 
