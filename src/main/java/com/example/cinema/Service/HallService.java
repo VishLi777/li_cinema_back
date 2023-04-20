@@ -88,4 +88,8 @@ public class HallService {
         Cinema cinema = cinemaService.getById(cinema_id);
         return hallRepository.getAllByCinema(cinema);
     }
+
+    public Hall save(Hall hall){
+        return hallRepository.save(hall);
+    }
 }
