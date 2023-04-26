@@ -33,8 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             throw new UsernameNotFoundException(email);
         }
 
-        //Херобора для превращения нашего листа с ролями в Collection <? extends GrantedAuthority>
-        //Взял от сюда: https://www.youtube.com/watch?v=m5FAo5Oa6ag&t=3818s время 30:20
+        //Превращение листа с ролями в Collection <? extends GrantedAuthority>
+        //https://www.youtube.com/watch?v=m5FAo5Oa6ag&t=3818s время 30:20
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole().name()))
                 .collect(Collectors.toList());
