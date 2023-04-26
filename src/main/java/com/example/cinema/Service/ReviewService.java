@@ -2,6 +2,7 @@ package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
 import com.example.cinema.Entity.Cinema;
+import com.example.cinema.Entity.Hall;
 import com.example.cinema.Entity.Movie;
 import com.example.cinema.Entity.Review;
 import com.example.cinema.Repository.ReviewRepository;
@@ -82,6 +83,10 @@ public class ReviewService {
 
     public Review getById(Long id) {
         return reviewRepository.getById(id);
+    }
+
+    public Review save(Review review){
+        return reviewRepository.save(review);
     }
 
 

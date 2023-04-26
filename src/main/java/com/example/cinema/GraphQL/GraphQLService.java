@@ -74,6 +74,7 @@ public class GraphQLService {
                 .type("Mutation", typeWiring -> typeWiring
                         .dataFetcher("editCinema", cinemaDF.editCinema())
                         .dataFetcher("editHall", hallDF.editHall())
+                        .dataFetcher("editReview", reviewDF.editReview())
                 )
 
                 .build();
