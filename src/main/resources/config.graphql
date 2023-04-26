@@ -25,6 +25,7 @@ type Query {
 type Mutation {
     editCinema(id: Long!, name: String, address: String, rating: Long): Cinema
     editHall(id: Long!, number: Int, json: String): Hall
+    editMovie(id: Long!, name: String, author: String, duration: Long, start_date_of_rental: Long, end_date_of_rental: Long): Movie
     editReview(id: Long!, description: String): Review
 }
 

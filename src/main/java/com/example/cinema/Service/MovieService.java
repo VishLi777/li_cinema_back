@@ -1,6 +1,7 @@
 package com.example.cinema.Service;
 
 import com.example.cinema.Dops.StaticMethods;
+import com.example.cinema.Entity.Hall;
 import com.example.cinema.Entity.Movie;
 
 import com.example.cinema.Repository.MovieRepository;
@@ -84,5 +85,9 @@ public class MovieService {
 
     public List<Movie> getAll() {
         return movieRepository.findAll();
+    }
+
+    public Movie save(Movie movie){
+        return movieRepository.save(movie);
     }
 }

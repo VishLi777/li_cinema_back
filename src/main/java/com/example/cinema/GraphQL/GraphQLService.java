@@ -75,6 +75,7 @@ public class GraphQLService {
                         .dataFetcher("editCinema", cinemaDF.editCinema())
                         .dataFetcher("editHall", hallDF.editHall())
                         .dataFetcher("editReview", reviewDF.editReview())
+                        .dataFetcher("editMovie", movieDF.editMovie())
                 )
 
                 .build();
