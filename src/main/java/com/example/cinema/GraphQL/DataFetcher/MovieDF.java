@@ -42,7 +42,5 @@ public class MovieDF {
                 movie.setEnd_date_of_rental(env.getArgument("end_date_of_rental"));
             return movieService.save(movie);
         };
-
     }
-
 }

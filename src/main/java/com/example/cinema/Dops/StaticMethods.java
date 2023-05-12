@@ -9,10 +9,10 @@ import com.example.cinema.ReqResContextSettings.ReqResContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class StaticMethods {
 
@@ -137,6 +137,23 @@ public class StaticMethods {
             return fileName.substring(fileName.lastIndexOf(".")+1);
             // в противном случае возвращаем заглушку, то есть расширение не найдено
         else return null;
+    }
+
+    public static Date convertStringToDate(String d){
+
+        if (d==null) {
+            StaticMethods.createResponse(400, "Date is null");
+            return null;
+        }
+        DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ITALIAN);
+        Date date;
+        try {
+            date = format.parse(d);
+        } catch (ParseException e) {
+            StaticMethods.createResponse(400, "Incorrect date");
+            return null;
+        }
+        return date;
     }
 
 }
