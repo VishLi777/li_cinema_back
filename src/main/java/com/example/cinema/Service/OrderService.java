@@ -125,4 +125,12 @@ public class OrderService {
 
     }
 
+    public boolean existsById(Long session_id) {
+        return orderRepository.existsById(session_id);
+    }
+    public Order save(Order order){
+        return orderRepository.save(order);
+    }
+
+
 }

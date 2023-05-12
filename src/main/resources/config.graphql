@@ -19,6 +19,7 @@ type Query {
     order(id: Long): Order
     allOrdersByOrderStatus(status: String): [Order]
     allOrdersByUserIdAndOrderStatus(user_id: Long, status: String): [Order]
+    user(id: Long): UserEntity
 
 }
 
@@ -28,6 +29,7 @@ type Mutation {
     editMovie(id: Long!, name: String, author: String, duration: Long, start_date_of_rental: Long, end_date_of_rental: Long): Movie
     editReview(id: Long!, description: String): Review
     editSession(id: Long!, start_time_of_display: Long, end_time_of_display: Long, date: String, price: Long, json: String, movie_id: Long, hall_id: Long): Session
+    editOrder(id: Long!, final_price: String, status: String, user_id: Long, session_id: Long): Order
 }
 
 type Cinema {
@@ -70,10 +72,18 @@ type Session {
     hall: Hall
 }
 
+type UserEntity{
+    id: Long
+    email: String
+    name: String
+    password: String
+}
+
 type Order {
     id: Long
     final_price: String
     status: String
+    user: UserEntity
     session: Session
 }
 

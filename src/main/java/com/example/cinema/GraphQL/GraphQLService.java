@@ -23,6 +23,7 @@ public class GraphQLService {
     ReviewDF reviewDF;
     SessionDF sessionDF;
     OrderDF orderDF;
+    UserDF userDF;
 
     @Autowired
     public GraphQLService(
@@ -31,7 +32,8 @@ public class GraphQLService {
             MovieDF movieDF,
             ReviewDF reviewDF,
             SessionDF sessionDF,
-            OrderDF orderDF
+            OrderDF orderDF,
+            UserDF userDF
     ) {
         this.cinemaDF = cinemaDF;
         this.hallDF = hallDF;
@@ -39,6 +41,7 @@ public class GraphQLService {
         this.reviewDF = reviewDF;
         this.sessionDF = sessionDF;
         this.orderDF = orderDF;
+        this.userDF = userDF;
     }
 
     private GraphQL graphQL;
@@ -70,6 +73,7 @@ public class GraphQLService {
                         .dataFetcher("order", orderDF.getById())
                         .dataFetcher("allOrdersByOrderStatus", orderDF.getAllByStatus())
                         .dataFetcher("allOrdersByUserIdAndOrderStatus", orderDF.getAllByUserIdAndOrderStatus())
+                        .dataFetcher("user", userDF.getById())
                 )
                 .type("Mutation", typeWiring -> typeWiring
                         .dataFetcher("editCinema", cinemaDF.editCinema())
@@ -77,6 +81,7 @@ public class GraphQLService {
                         .dataFetcher("editReview", reviewDF.editReview())
                         .dataFetcher("editMovie", movieDF.editMovie())
                         .dataFetcher("editSession", sessionDF.editSession())
+                        .dataFetcher("editOrder", orderDF.editOrder())
                 )
 
                 .build();
