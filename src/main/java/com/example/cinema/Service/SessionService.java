@@ -52,19 +52,7 @@ public class SessionService {
         Long price = StaticMethods.parsingLongFromJson(body, "price");
 
         String d = StaticMethods.parsingStringFromJson(body, "date");
-//        Date date = new Date();
-        if (d==null) {
-            StaticMethods.createResponse(400, "Date is null");
-            return null;
-        }
-        DateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ITALIAN);
-        Date date;
-        try {
-            date = format.parse(d);
-        } catch (ParseException e) {
-            StaticMethods.createResponse(400, "Incorrect date");
-            return null;
-        }
+        Date date =StaticMethods.convertStringToDate(d);
 
         Long hall_id = StaticMethods.parsingLongFromJson(body, "hall_id");
         if(!hallService.existsById(hall_id)){
@@ -169,8 +157,8 @@ public class SessionService {
         return true;
     }
 
-    public void save(Session session){
-        sessionRepository.save(session);
+     public Session save(Session session){
+        return sessionRepository.save(session);
     }
 
     public void deleteSession(Long id) {
@@ -191,7 +179,6 @@ public class SessionService {
         }
         StaticMethods.createResponse(HttpServletResponse.SC_CREATED, "Session deleted");
     }
-
 
 
 }

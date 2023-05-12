@@ -1,7 +1,7 @@
 package com.example.cinema.GraphQL;
 
 import com.example.cinema.GraphQL.DataFetcher.*;
-import com.example.cinema.GraphQL.sessionDF.SessionDF;
+import com.example.cinema.GraphQL.DataFetcher.SessionDF;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import graphql.schema.idl.RuntimeWiring;
@@ -76,6 +76,7 @@ public class GraphQLService {
                         .dataFetcher("editHall", hallDF.editHall())
                         .dataFetcher("editReview", reviewDF.editReview())
                         .dataFetcher("editMovie", movieDF.editMovie())
+                        .dataFetcher("editSession", sessionDF.editSession())
                 )
 
                 .build();
